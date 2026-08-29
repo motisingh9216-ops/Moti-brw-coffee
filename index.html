@@ -1,43 +1,67 @@
 <!DOCTYPE html>
-<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MOTI BREW - Only Coffee</title>
-<style>:root{--g:#6b3a22;--bg:#fdf6ee;--line:#f0e0cc}*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:var(--bg);padding-bottom:90px}.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:10px}.logo{font-weight:900;color:var(--g)}.search{flex:1;display:flex;align-items:center;background:#fff6e8;border:1px solid var(--line);border-radius:12px;padding:8px 12px}.search input{border:0;outline:0;flex:1;background:transparent}.pill{background:var(--g);color:#fff;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:700}.hero{margin:12px 14px;background:linear-gradient(135deg,#6b3a22,#c89a6a);color:#fff;border-radius:18px;padding:16px}.grid{padding:0 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:#fff;border-radius:16px;border:1px solid var(--line);overflow:hidden;position:relative}.cardImg{height:110px;display:flex;align-items:center;justify-content:center;font-size:42px;background:linear-gradient(#fff6e8,#fff)}.cardBody{padding:10px}.pr{font-weight:900;color:var(--g)}.old{color:#aaa;text-decoration:line-through;font-size:11px}.add{background:var(--g);color:#fff;border:0;padding:6px 12px;border-radius:9px;font-weight:700}.wish{position:absolute;top:8px;right:8px;background:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}.badge{position:absolute;top:8px;left:8px;background:#e53935;color:#fff;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;padding:6px 0;z-index:30}.bn{flex:1;text-align:center;font-size:11px}.drawer{position:fixed;inset:0;z-index:100;display:none}.drawer.show{display:block}.bg{position:absolute;inset:0;background:#0005}.panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;max-height:85vh;overflow:auto}.pHead{padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-weight:800;position:sticky;top:0;background:#fff}.row{padding:10px 14px;display:flex;justify-content:space-between;align-items:center}.input{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;margin:6px 0;outline:0}.btn{width:100%;padding:12px;border:0;border-radius:12px;font-weight:800}.btnG{background:var(--g);color:#fff}.btnL{background:#f5e9d8;color:var(--g)}.toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%) translateY(100px);background:#111;color:#fff;padding:10px 16px;border-radius:12px;opacity:0;transition:.3s;z-index:200}.toast.show{transform:translateX(-50%) translateY(0);opacity:1}</style></head><body>
-<div class="top"><div class="logo">👑 MOTI BREW</div><div class="search">🔍<input id="q" placeholder="Coffee search..." oninput="render()"><span onclick="voice()">🎙️</span></div><div class="pill" onclick="openD('cart')">🛒 <span id="cc">0</span></div><div class="pill" onclick="openD('notif')">🔔</div></div>
-<div class="hero"><div style="font-weight:900;font-size:18px">🔥 FLAT 50% OFF - MOTI50</div><div style="font-size:12px">📍 <span id="loc">Jaipur</span> • Only Pure Coffee • 30 Mins</div></div>
-<div id="grid" class="grid"></div>
-<div class="nav"><div class="bn">☕<br>Home</div><div class="bn" onclick="openD('wish')">❤️<br>Wish (<span id="wc">0</span>)</div><div class="bn" onclick="openD('orders')">📦<br>Orders</div><div class="bn" onclick="openD('profile')">👤<br>You</div></div>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MOTI BREW - Only Coffee</title>
+<style>
+body{margin:0;font-family:system-ui;background:#fdf6ee;padding-bottom:160px}
+.top{position:sticky;top:0;background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #f0e0cc;z-index:10}
+.logo{font-weight:900;color:#6b3a22;font-size:20px}
+.search{flex:1;background:#fff6e8;border:1px solid #f0e0cc;border-radius:12px;padding:8px 12px;display:flex}
+.search input{border:0;outline:0;flex:1;background:transparent}
+.pill{background:#6b3a22;color:#fff;padding:6px 12px;border-radius:20px;font-weight:700}
+.hero{margin:12px;background:linear-gradient(135deg,#6b3a22,#c89a6a);color:#fff;border-radius:18px;padding:16px}
+.grid{padding:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:16px;border:1px solid #f0e0cc;overflow:hidden;text-align:center;padding-bottom:10px}
+.img{height:100px;display:flex;align-items:center;justify-content:center;font-size:45px;background:#fff6e8}
+.pr{font-weight:900;color:#6b3a22;font-size:16px}
+.btn{background:#6b3a22;color:#fff;border:0;padding:7px 14px;border-radius:9px;font-weight:700;margin-top:6px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #f0e0cc;display:flex;padding:6px 0;z-index:30}
+.bn{flex:1;text-align:center;font-size:11px}
+.cartBox{position:fixed;bottom:50px;left:0;right:0;background:#fff;border-top:2px solid #6b3a22;padding:12px;z-index:20}
+.input{width:100%;padding:10px;margin:5px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}
+</style></head><body>
+<div class="top"><div class="logo">👑 MOTI BREW</div><div class="search">🔍<input placeholder="Coffee search..."></div><div class="pill">🛒 <span id="cc">0</span></div></div>
+<div class="hero"><b>☕ Only Pure Coffee - Jaipur</b><br>📍 100% Fresh Brew • 30 Mins Delivery</div>
 
-<div id="cart" class="drawer"><div class="bg" onclick="closeD('cart')"></div><div class="panel"><div class="pHead">🛒 Smart Cart <span onclick="closeD('cart')">✕</span></div><div id="cartList"></div><div style="padding:14px"><input id="cName" class="input" placeholder="👤 Name"><input id="cPhone" class="input" placeholder="📱 Mobile"><input id="cAddr" class="input" placeholder="📍 Address, Jaipur"><div style="display:flex;gap:8px"><input id="couponIn" class="input" value="MOTI50"><button class="btn btnL" style="width:100px" onclick="applyCoupon()">Apply</button></div><div class="row"><span>Subtotal</span><b id="sub">₹0</b></div><div class="row" style="color:green"><span>Discount</span><b id="disc">-₹0</b></div><div class="row"><span>Delivery</span><b id="del">₹20</b></div><div class="row" style="font-size:18px"><b>Total</b><b id="tot">₹0</b></div><button class="btn btnG" onclick="payQR()">💳 QR/UPI Pay</button><button class="btn btnL" style="margin-top:8px" onclick="whatsapp()">📲 WhatsApp Order</button></div></div></div>
-<div id="profile" class="drawer"><div class="bg" onclick="closeD('profile')"></div><div class="panel"><div class="pHead">👤 Profile <span onclick="closeD('profile')">✕</span></div><div style="padding:14px"><div id="loginBox"><input id="lPhone" class="input" placeholder="📱 Mobile"><button class="btn btnG" onclick="sendOTP()">Send OTP</button><div id="otpBox" style="display:none;margin-top:8px"><input id="otp" class="input" placeholder="OTP = 1234"><button class="btn" style="background:#111;color:#fff" onclick="verifyOTP()">Verify</button></div></div><div id="profBox" style="display:none"><p>Welcome <b id="pName"></b> • Points: <span id="pts">0</span></p><button class="btn" style="margin-top:8px;background:#111;color:#fff" onclick="logout()">Logout</button></div></div></div></div>
-<div id="qr" class="drawer"><div class="bg" onclick="closeD('qr')"></div><div class="panel"><div class="pHead">💳 UPI Pay <span onclick="closeD('qr')">✕</span></div><div style="padding:14px;text-align:center"><div style="width:200px;height:200px;background:#111;color:#fff;margin:auto;border-radius:12px;display:flex;align-items:center;justify-content:center">UPI QR<br>motibrew@upi<br>₹<span id="qrAmt">0</span></div><button class="btn btnG" style="margin-top:10px" onclick="confirmOrder()">I Have Paid - Confirm</button></div></div></div>
-<div id="track" class="drawer"><div class="bg" onclick="closeD('track')"></div><div class="panel"><div class="pHead">🚴 Live Tracking <span onclick="closeD('track')">✕</span></div><div style="padding:14px"><h3 id="tId">Order MB123456</h3><p>✅ Confirmed</p><p>🔥 Brewing</p><p>🚴 Out for Delivery - ETA 25 min</p><iframe style="width:100%;height:160px;border:0;border-radius:12px" src="https://maps.google.com/maps?q=Jaipur&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div></div></div>
-<div id="orders" class="drawer"><div class="bg" onclick="closeD('orders')"></div><div class="panel"><div class="pHead">📦 Orders <span onclick="closeD('orders')">✕</span></div><div id="ordersList" style="padding:14px"></div></div></div>
-<div id="wish" class="drawer"><div class="bg" onclick="closeD('wish')"></div><div class="panel"><div class="pHead">❤️ Wishlist <span onclick="closeD('wish')">✕</span></div><div id="wishList" style="padding:14px"></div></div></div>
-<div id="notif" class="drawer"><div class="bg" onclick="closeD('notif')"></div><div class="panel"><div class="pHead">🔔 Notifications <span onclick="closeD('notif')">✕</span></div><div style="padding:14px"><p>☕ Brewing started</p><p>🎁 MOTI50 active - 50% OFF</p></div></div></div>
-<div id="prod" class="drawer"><div class="bg" onclick="closeD('prod')"></div><div class="panel"><div class="pHead">☕ Coffee Details <span onclick="closeD('prod')">✕</span></div><div id="prodDetail" style="padding:14px"></div></div></div>
-<div id="toast" class="toast"></div>
+<div class="grid">
+<div class="card"><div class="img">☕</div><b>Espresso</b><br><span class="pr">₹99</span><br><button class="btn" onclick="add('Espresso',99)">ADD</button></div>
+<div class="card"><div class="img">🔥</div><b>Americano</b><br><span class="pr">₹119</span><br><button class="btn" onclick="add('Americano',119)">ADD</button></div>
+<div class="card"><div class="img">🤎</div><b>Cappuccino</b><br><span class="pr">₹149</span><br><button class="btn" onclick="add('Cappuccino',149)">ADD</button></div>
+<div class="card"><div class="img">🥛</div><b>Cafe Latte</b><br><span class="pr">₹149</span><br><button class="btn" onclick="add('Latte',149)">ADD</button></div>
+<div class="card"><div class="img">✨</div><b>Flat White</b><br><span class="pr">₹159</span><br><button class="btn" onclick="add('Flat White',159)">ADD</button></div>
+<div class="card"><div class="img">🧊</div><b>Cold Brew</b><br><span class="pr">₹139</span><br><button class="btn" onclick="add('Cold Brew',139)">ADD</button></div>
+<div class="card"><div class="img">⚫</div><b>Black Coffee</b><br><span class="pr">₹89</span><br><button class="btn" onclick="add('Black Coffee',89)">ADD</button></div>
+<div class="card"><div class="img">☕</div><b>Filter Coffee</b><br><span class="pr">₹129</span><br><button class="btn" onclick="add('Filter Coffee',129)">ADD</button></div>
+</div>
+
+<div class="cartBox">
+<div id="cart">🛒 Cart: 0 items | Total: ₹0</div>
+<input id="name" class="input" placeholder="👤 Your Name">
+<input id="phone" class="input" placeholder="📱 Mobile Number">
+<button onclick="order()" style="width:100%;background:#6b3a22;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:900">📲 WhatsApp Order Now</button>
+</div>
+
+<div class="nav"><div class="bn">☕<br>Home</div><div class="bn">❤️<br>Wish (0)</div><div class="bn">📦<br>Orders</div><div class="bn">👤<br>You</div></div>
+
 <script>
+let items=[],total=0;
+function add(n,p){
+ items.push(n);
+ total+=p;
+ document.getElementById("cc").innerText=items.length;
+ document.getElementById("cart").innerText="🛒 Cart: "+items.length+" items | Total: ₹"+total;
 
-const PRODS=[{id:1,name:"Espresso",price:99,old:198,emoji:"☕",desc:"Strong pure shot"},{id:2,name:"Americano",price:119,old:238,emoji:"🔥",desc:"Espresso + Hot Water"},{id:3,name:"Cappuccino",price:149,old:298,emoji:"🤎",desc:"Milk + Foam"},{id:4,name:"Cafe Latte",price:149,old:298,emoji:"🥛",desc:"Smooth milky"},{id:5,name:"Flat White",price:159,old:318,emoji:"✨",desc:"Australian style"},{id:6,name:"Cold Brew",price:139,old:278,emoji:"🧊",desc:"12hr brewed"},{id:7,name:"Black Coffee",price:89,old:178,emoji:"⚫",desc:"Pure black"},{id:8,name:"Filter Coffee",price:129,old:258,emoji:"☕",desc:"South Indian"}];
-let cart=JSON.parse(localStorage.getItem("mb_cart")||"[]"),wish=JSON.parse(localStorage.getItem("mb_wish")||"[]"),orders=JSON.parse(localStorage.getItem("mb_orders")||"[]"),pts=parseInt(localStorage.getItem("mb_pts")||"0"),coupon="MOTI50";
-function render(){let q=document.getElementById("q").value.toLowerCase();let list=PRODS.filter(p=>p.name.toLowerCase().includes(q));document.getElementById("grid").innerHTML=list.map(p=>`<div class="card" onclick="openP(${p.id})"><div class="badge">50% OFF</div><div class="wish" onclick="event.stopPropagation();toggleW(${p.id})">${wish.includes(p.id)?'❤️':'🤍'}</div><div class="cardImg">${p.emoji}</div><div class="cardBody"><b>${p.name}</b><div style="font-size:11px;color:#8b735e">${p.desc}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span><span class="old">₹${p.old}</span> <span class="pr">₹${p.price}</span></span><button class="add" onclick="event.stopPropagation();addC(${p.id})">ADD</button></div></div></div>`).join("");}
-function openP(id){let p=PRODS.find(x=>x.id==id);document.getElementById("prodDetail").innerHTML=`<div style="text-align:center;font-size:60px">${p.emoji}</div><h2>${p.name}</h2><p>${p.desc}</p><div style="border:1px solid #f0e0cc;padding:10px;border-radius:12px;margin-top:10px"><b>Customization</b><br><label><input type="radio" name="s" checked> Hot</label> <label><input type="radio" name="s"> Cold +₹10</label><br><label><input type="radio" name="sugar" checked> Normal</label> <label><input type="radio" name="sugar"> Less</label><br><label><input type="checkbox"> Extra Shot +₹30</label></div><button class="btn btnG" style="margin-top:12px" onclick="addC(${p.id});closeD('prod');openD('cart')">Add - ₹${p.price}</button>`;openD('prod');}
-function addC(id){let p=PRODS.find(x=>x.id==id),f=cart.find(x=>x.id==id);if(f)f.qty++;else cart.push({...p,qty:1});save();toast(p.name+" added")}
-function save(){localStorage.setItem("mb_cart",JSON.stringify(cart));renderCart()}
-function renderCart(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),disc=coupon==='MOTI50'?Math.round(sub*0.5):0,del=sub>199?0:20,tot=sub-disc+del;document.getElementById("cartList").innerHTML=cart.length?cart.map((x,i)=>`<div class="row"><span>${x.emoji} ${x.name}</span><span><button onclick="chg(${i},-1)">-</button> ${x.qty} <button onclick="chg(${i},1)">+</button> ₹${x.price*x.qty}</span></div>`).join(""):"<div style='padding:14px'>Cart empty</div>";document.getElementById("sub").textContent="₹"+sub;document.getElementById("disc").textContent="-₹"+disc;document.getElementById("del").textContent=del?"₹"+del:"FREE";document.getElementById("tot").textContent="₹"+tot;document.getElementById("cc").textContent=cart.reduce((s,x)=>s+x.qty,0);document.getElementById("qrAmt").textContent=tot;}
-function chg(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);save()}
-function toggleW(id){if(wish.includes(id))wish=wish.filter(x=>x!=id);else wish.push(id);localStorage.setItem("mb_wish",JSON.stringify(wish));document.getElementById("wc").textContent=wish.length;renderWish();render();toast(wish.includes(id)?"Wishlist added":"Removed")}
-function renderWish(){document.getElementById("wc").textContent=wish.length;document.getElementById("wishList").innerHTML=wish.length?PRODS.filter(p=>wish.includes(p.id)).map(p=>`<div class="row">${p.emoji} ${p.name} <button class="add" onclick="addC(${p.id})">Add</button></div>`).join(""):"No wishlist"}
-
-function applyCoupon(){let v=document.getElementById("couponIn").value.toUpperCase();if(v==='MOTI50'){coupon=v;toast("MOTI50 applied - 50% OFF");save()}else toast("Use MOTI50")}
-function payQR(){if(cart.length==0){toast("Cart empty");return}if(!document.getElementById("cName").value||!document.getElementById("cPhone").value){toast("Name & Phone bharo");return}openD('qr')}
-function whatsapp(){if(cart.length==0){toast("Cart empty");return}let tot=document.getElementById("tot").textContent;let items=cart.map(x=>`${x.name} x ${x.qty}`).join(", ");let msg=`☕ MOTI BREW - ONLY COFFEE ORDER\nName: ${document.getElementById("cName").value}\nPhone: ${document.getElementById("cPhone").value}\nAddr: ${document.getElementById("cAddr").value}\nItems: ${items}\nTotal: ${tot} (MOTI50)`;window.open("https://wa.me/916375678964?text="+encodeURIComponent(msg),"_blank");confirmOrder();}
-function confirmOrder(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),disc=coupon==='MOTI50'?Math.round(sub*0.5):0,del=sub>199?0:20,tot=sub-disc+del;let id="MB"+Date.now().toString().slice(-6);orders.unshift({id,items:[...cart],total:tot,time:new Date().toLocaleString()});localStorage.setItem("mb_orders",JSON.stringify(orders));pts+=Math.floor(tot/10);localStorage.setItem("mb_pts",pts);document.getElementById("tId").textContent=id;cart=[];save();renderOrders();closeD('qr');closeD('cart');openD('track');}
-function renderOrders(){document.getElementById("ordersList").innerHTML=orders.length?orders.map(o=>`<div style="border:1px solid #f0e0cc;padding:10px;border-radius:12px;margin-bottom:8px"><b>${o.id}</b> - ${o.time}<br>${o.items.map(x=>x.name+" x "+x.qty).join(", ")}<br><b>₹${o.total}</b><br><button class="btn btnL" style="margin-top:6px" onclick="cart=o.items;save();openD('cart')">🔁 Reorder</button></div>`).join(""):"No orders"}
-function openD(id){document.getElementById(id).classList.add("show")}function closeD(id){document.getElementById(id).classList.remove("show")}
-function toast(s){let t=document.getElementById("toast");t.textContent=s;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000)}
-function sendOTP(){document.getElementById("otpBox").style.display="block";toast("OTP: 1234")}function verifyOTP(){if(document.getElementById("otp").value=="1234"){localStorage.setItem("mb_user",document.getElementById("lPhone").value);document.getElementById("loginBox").style.display="none";document.getElementById("profBox").style.display="block";document.getElementById("pName").textContent=document.getElementById("lPhone").value;document.getElementById("pts").textContent=pts;toast("Login success")}else toast("Wrong OTP")}
-function logout(){localStorage.removeItem("mb_user");document.getElementById("loginBox").style.display="block";document.getElementById("profBox").style.display="none")}
-function voice(){if('webkitSpeechRecognition' in window){let r=new webkitSpeechRecognition();r.lang='hi-IN';r.onresult=e=>{document.getElementById("q").value=e.results[0][0].transcript;render()};r.start()}else toast("Type karo")}
-render();renderCart();renderWish();renderOrders();
-if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>{document.getElementById("loc").textContent="Jaipur - Detected"})}
-</script></body></html>
+alert(n+" added to cart");
+}
+function order(){
+ let nm=document.getElementById("name").value,ph=document.getElementById("phone").value;
+ if(!nm||!ph){alert("Name aur Mobile bharo");return}
+ if(items.length==0){alert("Pehle Coffee ADD karo");return}
+ let msg=`☕ MOTI BREW - ONLY COFFEE ORDER
+Name: ${nm}
+Phone: ${ph}
+Items: ${items.join(", ")}
+Total Pay: ₹${total}
+📍 Jaipur - 30 Mins Delivery`;
+ window.open("https://wa.me/916375678964?text="+encodeURIComponent(msg),"_blank");
+}
+</script>
+</body></html>
