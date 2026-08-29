@@ -1,18 +1,27 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MOTI BREW</title></head><body style="margin:0;font-family:sans-serif;background:#fdf6ee">
-<div style="background:#000;color:#fff;text-align:center;padding:10px">🔥 FLAT 50% OFF CODE: MOTI50</div>
-<div style="padding:15px;background:#fff;display:flex;justify-content:space-between"><b>👑 MOTI BREW - Jaipur</b><span>30 Mins</span></div>
-<div style="padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px" id="g"></div>
-<div style="position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px;border-top:2px solid #6b3a22">
-<div id="c">🛒 Cart 0 | Total ₹0</div>
-<input id="n" placeholder="Name" style="width:100%;padding:10px;margin:5px 0"><input id="p" placeholder="Phone" style="width:100%;padding:10px;margin:5px 0">
-<button onclick="order()" style="width:100%;background:#6b3a22;color:#fff;padding:14px;border:0;border-radius:10px;font-weight:900">📲 WhatsApp Order - MOTI50</button>
-</div>
-<script>
-let P=[{n:"Cappuccino",p:149,e:"☕"},{n:"Latte",p:139,e:"🥛"},{n:"Cold Coffee",p:129,e:"🧊"},{n:"Frappe",p:159,e:"🍫"},{n:"Mocha",p:169,e:"🍩"},{n:"Americano",p:119,e:"🔥"},{n:"Sandwich",p:99,e:"🥪"},{n:"Cookie",p:49,e:"🍪"}],C=[];
-function R(){document.getElementById("g").innerHTML=P.map((x,i)=>`<div style="background:#fff;border-radius:15px;padding:12px;text-align:center;border:1px solid #f0e0cc"><div style="font-size:35px">${x.e}</div><b>${x.n}</b><br>₹${x.p} <span style="color:red">50% OFF</span><br><button onclick="A(${i})" style="background:#6b3a22;color:#fff;border:0;padding:8px 15px;border-radius:8px;margin-top:5px">ADD</button></div>`).join("")}
-function A(i){let f=C.find(q=>q.n==P[i].n);if(f)f.q++;else C.push({...P[i],q:1});U()}
-function U(){let t=C.reduce((s,x)=>s+x.p*x.q,0),d=Math.round(t/2);document.getElementById("c").innerText=`🛒 ${C.reduce((s,x)=>s+x.q,0)} items | Total ₹${t-d} (You save ₹${d})`}
-function order(){if(C.length==0){alert("Pehle coffee add karo");return}let nm=document.getElementById("n").value,ph=document.getElementById("p").value;if(!nm||!ph){alert("Name Phone likho");return}let t=C.reduce((s,x)=>s+x.p*x.q,0),f=t-Math.round(t/2),msg=`MOTI BREW ORDER\nName:${nm}\nPhone:${ph}\nItems:${C.map(x=>x.n+" x"+x.q).join(", ")}\nTotal: ₹${f} (MOTI50)`;window.open("https://wa.me/916375678964?text="+encodeURIComponent(msg),"_blank")}
-R()
+getElementById("wc").textContent=wish.length;renderWish();render();toast(wish.includes(id)?"Added to wishlist":"Removed")}
+function renderWish(){document.getElementById("wc").textContent=wish.length;document.getElementById("wishList").innerHTML=wish.length?PRODS.filter(p=>wish.includes(p.id)).map(p=>`<div class="row">${p.emoji} ${p.name} <button class="add" onclick="addC(${p.id})">Add</button></div>`).join(""):"No wishlist"}
+function applyCoupon(){let v=document.getElementById("couponIn").value.toUpperCase();if(v==='MOTI50'){coupon=v;toast("Coupon MOTI50 applied - 50% OFF");save()}else toast("Invalid - Use MOTI50")}
+function payQR(){if(cart.length==0){toast("Cart empty");return}if(!document.getElementById("cName").value||!document.getElementById("cPhone").value){toast("Name & Phone bharo");return}openD('qr')}
+function whatsapp(){
+if(cart.length==0){toast("Cart empty");return}
+let tot=document.getElementById("tot").textContent;
+let items=cart.map(x=>`${x.name} x ${x.qty}`).join(", ");
+let msg=`☕ MOTI BREW - ONLY COFFEE ORDER\nName: ${document.getElementById("cName").value}\nPhone: ${document.getElementById("cPhone").value}\nAddr: ${document.getElementById("cAddr").value}\nItems: ${items}\nTotal: ${tot} (Coupon: ${coupon||'none'})`;
+window.open("https://wa.me/916375678964?text="+encodeURIComponent(msg),"_blank");confirmOrder();
+}
+function confirmOrder(){
+let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),disc=coupon==='MOTI50'?Math.round(sub*0.5):0,del=sub>199?0:20,tot=sub-disc+del;
+let id="MB"+Date.now().toString().slice(-6);
+orders.unshift({id,items:[...cart],total:tot,time:new Date().toLocaleString()});localStorage.setItem("mb_orders",JSON.stringify(orders));
+pts+=Math.floor(tot/10);localStorage.setItem("mb_pts",pts);
+document.getElementById("tId").textContent=id;cart=[];save();renderOrders();closeD('qr');closeD('cart');openD('track');
+}
+function renderOrders(){document.getElementById("ordersList").innerHTML=orders.length?orders.map(o=>`<div style="border:1px solid #f0e0cc;padding:10px;border-radius:12px;margin-bottom:8px"><b>${o.id}</b> - ${o.time}<br>${o.items.map(x=>x.name+" x "+x.qty).join(", ")}<br><b>₹${o.total}</b><br><button class="btn btnL" style="margin-top:6px" onclick="cart=o.items;save();openD('cart')">🔁 One-Tap Reorder</button></div>`).join(""):"No orders"}
+function openD(id){document.getElementById(id).classList.add("show")}function closeD(id){document.getElementById(id).classList.remove("show")}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000)}
+function sendOTP(){document.getElementById("otpBox").style.display="block";toast("OTP: 1234")}function verifyOTP(){if(document.getElementById("otp").value=="1234"){localStorage.setItem("mb_user",document.getElementById("lPhone").value);document.getElementById("loginBox").style.display="none";document.getElementById("profBox").style.display="block";document.getElementById("pName").textContent=document.getElementById("lPhone").value;document.getElementById("pts").textContent=pts;toast("Login success")}else toast("Wrong OTP")}
+function logout(){localStorage.removeItem("mb_user");document.getElementById("loginBox").style.display="block";document.getElementById("profBox").style.display="none")}
+function voice(){if('webkitSpeechRecognition' in window){let r=new webkitSpeechRecognition();r.lang='hi-IN';r.onresult=e=>{document.getElementById("q").value=e.results[0][0].transcript;render()};r.start()}else toast("Type karo")}
+render();renderCart();renderWish();renderOrders();
+if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>{document.getElementById("loc").textContent="Jaipur - Detected"})}
 </script></body></html>
