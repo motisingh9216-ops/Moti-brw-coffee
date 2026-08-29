@@ -1,49 +1,18 @@
 <!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#6b3a22">
-<title>MOTI BREW - Jaipur | Super App</title>
-<style>
-:root{--g:#6b3a22;--g2:#b07a4a;--bg:#fdf6ee;--card:#fff;--ink:#1f130e;--line:#f0e0cc;--ok:#138a36;--red:#e53935}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,sans-serif}
-body{background:var(--bg);color:var(--ink);padding-bottom:90px}
-.top{position:sticky;top:0;z-index:30;background:#000;color:#fff;text-align:center;padding:7px 10px;font-weight:700;font-size:13px}
-.header{position:sticky;top:28px;z-index:29;background:rgba(253,246,238,.9);backdrop-filter:blur(10px);padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
-.logo{font-weight:900;font-size:20px;color:var(--g)}
-.searchBox{flex:1;display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;gap:6px}
-.searchBox input{border:0;outline:0;flex:1;background:transparent}
-.pill{background:var(--g);color:#fff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700}
-.tabs{display:flex;gap:8px;overflow:auto;padding:12px 14px;white-space:nowrap}
-.tab{padding:8px 14px;border-radius:20px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600}
-.tab.active{background:var(--g);color:#fff;border-color:var(--g)}
-.hero{margin:10px 14px;background:linear-gradient(135deg,#6b3a22,#d9a066);color:#fff;border-radius:18px;padding:16px;display:flex;justify-content:space-between;align-items:center}
-.grid{padding:0 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:var(--card);border-radius:16px;border:1px solid var(--line);overflow:hidden;position:relative}
-.cardImg{height:130px;background:linear-gradient(120deg,#f5e2c8,#fff);display:flex;align-items:center;justify-content:center;font-size:40px}
-.cardBody{padding:10px}
-.cardBody b{font-size:14px;display:block;line-height:1.2}
-.muted{color:#8b735e;font-size:11px}
-.priceRow{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.old{color:#aaa;text-decoration:line-through;font-size:11px}
-.pr{font-weight:900;color:var(--g)}
-.addBtn{background:var(--g);color:#fff;border:0;padding:7px 12px;border-radius:10px;font-weight:700;font-size:12px}
-.wish{position:absolute;top:8px;right:8px;background:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
-.badge{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px}
-.bottomNav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 0;z-index:40}
-.bn{flex:1;text-align:center;font-size:11px;padding:4px}
-.bn.active{color:var(--g);font-weight:800}
-.drawer{position:fixed;inset:0;z-index:100;display:none}
-.drawer.show{display:block}
-.drawer .bg{position:absolute;inset:0;background:#0006}
-.panel{position:absolute;bottom:0;left:0;right:0;max-height:88vh;background:#fff;border-radius:20px 20px 0 0;overflow:auto;animation:up .25s}
-@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.pHead{position:sticky;top:0;background:#fff;padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-weight:800}
-.row{padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
-.input{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;margin:6px 0;outline:0}
-.btn{width:100%;padding:12px;border:0;border-radius:12px;font-weight:800;cursor:pointer}
-.btnG{background:var(--g);color:#fff}.btnB{background:#111;color:#fff}.btnL{background:#f5e9d8;color:var(--g)}
-.tag{padding:4px 8px;border-radius:8px;background:#fff6e8;border:1px solid var(--line);font-size:11px}
-.
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MOTI BREW</title></head><body style="margin:0;font-family:sans-serif;background:#fdf6ee">
+<div style="background:#000;color:#fff;text-align:center;padding:10px">🔥 FLAT 50% OFF CODE: MOTI50</div>
+<div style="padding:15px;background:#fff;display:flex;justify-content:space-between"><b>👑 MOTI BREW - Jaipur</b><span>30 Mins</span></div>
+<div style="padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px" id="g"></div>
+<div style="position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px;border-top:2px solid #6b3a22">
+<div id="c">🛒 Cart 0 | Total ₹0</div>
+<input id="n" placeholder="Name" style="width:100%;padding:10px;margin:5px 0"><input id="p" placeholder="Phone" style="width:100%;padding:10px;margin:5px 0">
+<button onclick="order()" style="width:100%;background:#6b3a22;color:#fff;padding:14px;border:0;border-radius:10px;font-weight:900">📲 WhatsApp Order - MOTI50</button>
+</div>
+<script>
+let P=[{n:"Cappuccino",p:149,e:"☕"},{n:"Latte",p:139,e:"🥛"},{n:"Cold Coffee",p:129,e:"🧊"},{n:"Frappe",p:159,e:"🍫"},{n:"Mocha",p:169,e:"🍩"},{n:"Americano",p:119,e:"🔥"},{n:"Sandwich",p:99,e:"🥪"},{n:"Cookie",p:49,e:"🍪"}],C=[];
+function R(){document.getElementById("g").innerHTML=P.map((x,i)=>`<div style="background:#fff;border-radius:15px;padding:12px;text-align:center;border:1px solid #f0e0cc"><div style="font-size:35px">${x.e}</div><b>${x.n}</b><br>₹${x.p} <span style="color:red">50% OFF</span><br><button onclick="A(${i})" style="background:#6b3a22;color:#fff;border:0;padding:8px 15px;border-radius:8px;margin-top:5px">ADD</button></div>`).join("")}
+function A(i){let f=C.find(q=>q.n==P[i].n);if(f)f.q++;else C.push({...P[i],q:1});U()}
+function U(){let t=C.reduce((s,x)=>s+x.p*x.q,0),d=Math.round(t/2);document.getElementById("c").innerText=`🛒 ${C.reduce((s,x)=>s+x.q,0)} items | Total ₹${t-d} (You save ₹${d})`}
+function order(){if(C.length==0){alert("Pehle coffee add karo");return}let nm=document.getElementById("n").value,ph=document.getElementById("p").value;if(!nm||!ph){alert("Name Phone likho");return}let t=C.reduce((s,x)=>s+x.p*x.q,0),f=t-Math.round(t/2),msg=`MOTI BREW ORDER\nName:${nm}\nPhone:${ph}\nItems:${C.map(x=>x.n+" x"+x.q).join(", ")}\nTotal: ₹${f} (MOTI50)`;window.open("https://wa.me/916375678964?text="+encodeURIComponent(msg),"_blank")}
+R()
+</script></body></html>
