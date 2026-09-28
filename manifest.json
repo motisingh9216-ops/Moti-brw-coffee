@@ -1,0 +1,12 @@
+{
+  "name": "Moti Brew Coffee - Jaipur",
+  "short_name": "Moti Brew",
+  "start_url": "/Moti-brw-coffee/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "icons": [
+    {"src": "https://cdn-icons-png.flaticon.com/512/2936/2936886.png","sizes": "192x192","type": "image/png"},
+    {"src": "https://cdn-icons-png.flaticon.com/512/2936/2936886.png","sizes": "512x512","type": "image/png"}
+  ]
+}
